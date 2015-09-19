@@ -43,21 +43,23 @@ function assert(expression, failureMessage) {
  Here are some examples for how to use the assert method:
 */
 
-assert(1 === 1, '1 equals 1 - this assert will pass.');
-assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
+// assert(1 === 1, '1 equals 1 - this assert will pass.');
+// assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
 
 /* ===========================================================================
 ------------------Assertions (8 points total)---------------------------------
 ==============================================================================
- TODO: Invoke assert twice (4 points each).
+ Invoke assert twice (4 points each).
  (In other words, create two assertions like the ones
  above.)
  Use any boolean expressions that you like, but preferably
  zoo-themed.  Make one pass and one fail. In the failure message, describe why
  it failed.
 */
-
-//your code goes here
+var trees = 'trees';
+var bees = 'bees';
+assert(trees > bees, 'Trees should be greater than bees');
+assert(4 - 1 === 2000 + 2003, '3 should equal three');
 
 /* ========================================================================
 ----------------- Meerkats (20 points total)-------------------------------
@@ -74,15 +76,25 @@ var sentence2 = 'Come over here so you can scratch my belly.';
  HINT: the 'split' method on String will be useful.
 */
 
-// TODO: part #1: use a for loop to replace the words in sentence 1 with
+// part #1: use a for loop to replace the words in sentence 1 with
 // 'chirp' (10 points)
 
-// your code goes here
+var chirpArr = sentence1.split(' ');
+for (var i = 0; i < chirpArr.length; i++) {
+  chirpArr[i] = 'chirp';
+}
+sentence1 = chirpArr.join(' ') + '.';
 
-// TODO: part #2: use a while or do-while loop to replace the words in sentence 2
+// part #2: use a while or do-while loop to replace the words in sentence 2
 // with 'chirp' (10 points)
 
-// your code goes here
+var chirpArr = sentence2.split(' ');
+var i = 0;
+while (i < chirpArr.length) {
+  chirpArr[i] = 'chirp';
+  i++;
+}
+sentence2 = chirpArr.join(' ') + '.';
 
 // Leave these assertions as-is! If they pass, your code works.
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
@@ -101,10 +113,9 @@ assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
 var favoriteAnimals = ['elephant', 'penguin', 'eagle', 'camel'];
 var nextAnimal;
 
-// TODO: 12 points
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
-// your code goes here
+nextAnimal = favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
 
 assert(nextAnimal, 'assign something to nextAnimal');
 
@@ -125,7 +136,7 @@ var mealsPerDay = [5, 4, 3, 6, 2, 4, 3, 4, 5, 1];
 var tooHungryDay;
 
 /*
- TODO: 20 points
+ 20 points
  Cycle through the days in mealsPerDay. At each day, print out the average
  number of meals/day the lion got since the new caretaker started.
  tooHungryDay should receive the number of days before the lion started
@@ -133,7 +144,17 @@ var tooHungryDay;
  meals)
 */
 
-// your code goes here
+var averageMPD = 0;
+var total = 0;
+for (var i = 0; i < mealsPerDay.length; i++) {
+  total += mealsPerDay[i];
+  averageMPD = total / (i + 1);
+  console.log(averageMPD);
+  if (averageMPD < 4 && !tooHungryDay) {
+    tooHungryDay = i + 1;
+    console.log(tooHungryDay);
+  }
+}
 
 assert(tooHungryDay, 'remember to assign the answer to tooHungryDay');
 assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
@@ -141,7 +162,7 @@ assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
 /* ==================================================================
 ----------------- Code Style (10 points) ----------------------------
 =====================================================================
- TODO: 10 points (5 points each for passing jshint and jscs)
+ 10 points (5 points each for passing jshint and jscs)
  Now, we're going to use two tools: jshint and jscs, to check our code for
  best-practices and style consistency.
 
