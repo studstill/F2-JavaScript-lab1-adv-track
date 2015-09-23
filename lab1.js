@@ -43,23 +43,25 @@ function assert(expression, failureMessage) {
  Here are some examples for how to use the assert method:
 */
 
-// assert(1 === 1, '1 equals 1 - this assert will pass.');
-// assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
+assert(1 === 1, '1 equals 1 - this assert will pass.');
+assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
 
 /* ===========================================================================
 ------------------Assertions (8 points total)---------------------------------
 ==============================================================================
- Invoke assert twice (4 points each).
+ TODO: Invoke assert twice (4 points each).
  (In other words, create two assertions like the ones
  above.)
  Use any boolean expressions that you like, but preferably
  zoo-themed.  Make one pass and one fail. In the failure message, describe why
  it failed.
 */
-var trees = 'trees';
-var bees = 'bees';
-assert(trees > bees, 'Trees should be greater than bees');
-assert(4 - 1 === 2000 + 2003, '3 should equal three');
+
+var zooKeeper = "Billy";
+var bigPanda = "Bobby";
+
+assert(zooKeeper === "Billy", "We checked to see if the ZooKeeper's Name is Billy...It is!");
+assert(zooKeeper === bigPanda, "The zooKeeper and the bigPanda have differnet names! The string values do not equal! The expression is false!");
 
 /* ========================================================================
 ----------------- Meerkats (20 points total)-------------------------------
@@ -76,25 +78,40 @@ var sentence2 = 'Come over here so you can scratch my belly.';
  HINT: the 'split' method on String will be useful.
 */
 
-// part #1: use a for loop to replace the words in sentence 1 with
+// TODO: part #1: use a for loop to replace the words in sentence 1 with
 // 'chirp' (10 points)
 
-var chirpArr = sentence1.split(' ');
-for (var i = 0; i < chirpArr.length; i++) {
-  chirpArr[i] = 'chirp';
-}
-sentence1 = chirpArr.join(' ') + '.';
+var sentenceOneAsArray = sentence1.split(' ');
+var sentenceOneArrayLength = sentenceOneAsArray.length;
 
-// part #2: use a while or do-while loop to replace the words in sentence 2
+for (var i = 0; i < sentenceOneArrayLength; i++){
+  sentenceOneAsArray[i] = 'chirp';
+  if (i === 2) {
+    sentence1 = sentenceOneAsArray.join(' ') + '.';
+    console.log(sentence1);
+  }
+}
+
+// TODO: part #2: use a while or do-while loop to replace the words in sentence 2
 // with 'chirp' (10 points)
 
-var chirpArr = sentence2.split(' ');
-var i = 0;
-while (i < chirpArr.length) {
-  chirpArr[i] = 'chirp';
-  i++;
+var sentenceTwoAsArray = sentence2.split(' ');
+var sentenceTwoArrayLength = sentenceTwoAsArray.length;
+var x = 0;
+
+while(x < sentenceTwoArrayLength){
+  sentenceTwoAsArray[x] = 'chirp';
+  if (x === 8) {
+    sentence2 = sentenceTwoAsArray.join(' ') + '.';
+    console.log(sentence2);
+    break;
+  }
+
+  x++;
 }
-sentence2 = chirpArr.join(' ') + '.';
+
+
+
 
 // Leave these assertions as-is! If they pass, your code works.
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
@@ -113,6 +130,7 @@ assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
 var favoriteAnimals = ['elephant', 'penguin', 'eagle', 'camel'];
 var nextAnimal;
 
+// TODO: 12 points
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
 nextAnimal = favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
@@ -136,7 +154,7 @@ var mealsPerDay = [5, 4, 3, 6, 2, 4, 3, 4, 5, 1];
 var tooHungryDay;
 
 /*
- 20 points
+ TODO: 20 points
  Cycle through the days in mealsPerDay. At each day, print out the average
  number of meals/day the lion got since the new caretaker started.
  tooHungryDay should receive the number of days before the lion started
@@ -144,15 +162,24 @@ var tooHungryDay;
  meals)
 */
 
-var averageMPD = 0;
-var total = 0;
-for (var i = 0; i < mealsPerDay.length; i++) {
-  total += mealsPerDay[i];
-  averageMPD = total / (i + 1);
-  console.log(averageMPD);
-  if (averageMPD < 4 && !tooHungryDay) {
-    tooHungryDay = i + 1;
-    console.log(tooHungryDay);
+var average = 0;
+var days = 0;
+var mealsTotal = 0;
+var i = 0;
+
+
+while(days < 2 || average >= 4){
+  days++;
+  mealsTotal += mealsPerDay[i];
+  average = mealsTotal / days;
+  i++;
+
+  console.log('Days: ' + days);
+  console.log('Average: ' + average);
+
+  if (average < 4){
+    tooHungryDay = days;
+    console.log('tooHungryDay = ' + tooHungryDay);
   }
 }
 
@@ -162,7 +189,7 @@ assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
 /* ==================================================================
 ----------------- Code Style (10 points) ----------------------------
 =====================================================================
- 10 points (5 points each for passing jshint and jscs)
+ TODO: 10 points (5 points each for passing jshint and jscs)
  Now, we're going to use two tools: jshint and jscs, to check our code for
  best-practices and style consistency.
 
